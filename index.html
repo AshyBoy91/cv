@@ -1,297 +1,626 @@
-<!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	Built by Ashy
--->
-<html>
-	<head>
-		<title>Ashy's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ashish Andhari - Portfolio</title>
+    <meta name="description" content="Ashish Andhari - Mechatronics Engineer, Embedded Developer & ADAS Engineer with 10+ years experience" />
+    <meta property="og:title" content="Ashish Andhari - Portfolio" />
+    <meta property="og:description" content="Mechatronics Engineer, Embedded Developer & ADAS Engineer" />
+    <meta property="og:type" content="website" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Source Serif 4', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+        .dark .timeline-line {
+            background: linear-gradient(to bottom, #60a5fa, #a78bfa);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.35rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        .dark .timeline-dot {
+            border-color: #1e293b;
+        }
+        .skill-tag {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .dark .card-hover:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-slate-900 dark:text-gray-200 transition-colors duration-300">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <!-- Dark Mode Toggle -->
+    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Toggle dark mode">
+        <i class="fas fa-moon text-gray-600 dark:hidden"></i>
+        <i class="fas fa-sun text-yellow-400 hidden dark:inline"></i>
+    </button>
 
-				<!-- Header -->
-					<header id="header" class="alt">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-700">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+            <span class="font-semibold text-lg gradient-text">AA</span>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#education" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Education</a>
+                <a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm font-medium">
+            <a href="#about" class="block hover:text-blue-600 dark:hover:text-blue-400">About</a>
+            <a href="#skills" class="block hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+            <a href="#experience" class="block hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
+            <a href="#education" class="block hover:text-blue-600 dark:hover:text-blue-400">Education</a>
+            <a href="#projects" class="block hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+            <a href="#contact" class="block hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+        </div>
+    </nav>
 
-						<h1>Ashish Andhari</h1>
-						<p>Mechatronics Engineer, Embedded Developer & ADAS Engineer<br />
-						Passion for Sustainable Energy and Autonomous Driving</p>
-						<ul class="icons">
-							<li><a href="https://au.linkedin.com/in/ashish-andhari-2a48bb35" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/AshyBoy91" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</header>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-16 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left" data-aos="fade-right">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Hello, I'm</p>
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 font-serif">Ashish Andhari</h1>
+                <p class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-6">
+                    Mechatronics Engineer, Embedded Developer<br>& <span class="gradient-text font-semibold">ADAS Engineer</span>
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
+                    10+ years of experience in product development, project management, automation and ADAS.
+                    Passionate about sustainable energy and autonomous driving.
+                </p>
+                <div class="flex gap-4 justify-center md:justify-start mb-6">
+                    <a href="#contact" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                        Contact Me
+                    </a>
+                    <a href="#experience" class="px-6 py-3 border border-gray-300 dark:border-slate-600 rounded-lg font-medium hover:border-blue-600 dark:hover:border-blue-400 transition-colors">
+                        View CV
+                    </a>
+                </div>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="https://au.linkedin.com/in/ashish-andhari-2a48bb35" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 text-xl transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/AshyBoy91" class="text-gray-500 hover:text-gray-900 dark:hover:text-white text-xl transition-colors" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:ashwork9191@gmail.com" class="text-gray-500 hover:text-red-500 text-xl transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-shrink-0" data-aos="fade-left">
+                <img src="images/pic01.jpg" alt="Ashish Andhari" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl ring-4 ring-blue-100 dark:ring-slate-700" />
+            </div>
+        </div>
+    </section>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#intro" class="active">Introduction</a></li>
-							<li><a href="#first">Education</a></li>
-							<li><a href="#second">Work Experience</a></li>
-							<li><a href="#cta">Personal Projects & Contact</a></li>
-						</ul>
-					</nav>
+    <!-- About / Skills Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">About Me</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">IoT, Data, Automation & ADAS</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 mb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center card-hover shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                        <i class="fas fa-briefcase text-blue-600 dark:text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl mb-1">10+</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Years Experience</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center card-hover shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                        <i class="fas fa-building text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl mb-1">6</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Companies</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center card-hover shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                        <i class="fas fa-certificate text-green-600 dark:text-green-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl mb-1">4+</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Certifications</p>
+                </div>
+            </div>
 
-				<!-- Main -->
-					<div id="main">
+            <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Electrical Engineer with extensive education in power systems, object-oriented programming and electronics.
+                <span class="inline-block mt-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+                    <i class="fas fa-flag mr-1"></i> Australian Citizen
+                </span>
+            </p>
+        </div>
+    </section>
 
-						<!-- Introduction -->
-							<section id="intro" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>IoT, Data and Automation</h2>
-										</header>
-										<p>Electrical Engineer with 10+ years of experience in product
-												development, project management, automation and ADAS. Extensive
-												education in discipline of power systems, Object-oriented programming and
-												electronics. <br>
-											<b>Australian Citizen</b><br>
-										<!-- </br> -->
-<!-- * Python, C/C++ firmware coding </br>
-* Backend Python web framework – Django and Frontend – JavaScript, HTML, CSS </br>
-* Mechanical modelling/simulations (CFD) – Solidworks, Autodesk Inventor </br>
-* Designing PCBs for IoT sensors – Altium and Eagle </br>
-* Electronic simulations – LTspice, Matlab, Labview </br>
-* Single board computer worked on - Nvidia Jetson, Google Coral, ESP32 </br>
-* Azure (public cloud computing platform) – Data and IoT </br>
-* Power BI and Power Apps developement </br> -->
-<h3><b><u>Professional and Academic skills:</u></b></h3>
-<ul class="alt">
-	<li>ADAS & Machine Vision Developer - <strong>OpenCV, Sensor Fusion, Azure Cognitive Services</strong></li>
-	<li>Mechanical modelling/simulations (CFD) – <strong>Solidworks, Autodesk Inventor</strong></li>
-	<li>Designing PCBs for IoT sensors – <strong>Altium and Eagle</strong></li>
-	<li>Electronic simulations – <strong>LTspice, Matlab, Labview</strong></li>
-	<li>Single board computer worked on - <strong>Nvidia Jetson, Google Coral, ESP32, SMT32</strong></li>
-	<li>Azure (public cloud computing platform) – <strong>Data and IoT</strong></li>
-	<li>Backend Python web framework – <strong>Django </strong> Frontend – <strong> JavaScript, HTML, CSS</strong></li>
-</ul>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Expertise</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">Skills & Technologies</h2>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up" data-aos-delay="100">
+                <span class="skill-tag px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"><i class="fas fa-eye mr-2"></i>ADAS</span>
+                <span class="skill-tag px-4 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium"><i class="fas fa-camera mr-2"></i>Machine Vision</span>
+                <span class="skill-tag px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full text-sm font-medium"><i class="fas fa-wave-square mr-2"></i>Sensor Fusion</span>
+                <span class="skill-tag px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium"><i class="fab fa-python mr-2"></i>Python</span>
+                <span class="skill-tag px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-full text-sm font-medium"><i class="fas fa-code mr-2"></i>C/C++</span>
+                <span class="skill-tag px-4 py-2 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium"><i class="fas fa-microchip mr-2"></i>OpenCV</span>
+                <span class="skill-tag px-4 py-2 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-medium"><i class="fas fa-cloud mr-2"></i>Azure IoT</span>
+                <span class="skill-tag px-4 py-2 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium"><i class="fas fa-microchip mr-2"></i>STM32</span>
+                <span class="skill-tag px-4 py-2 bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium"><i class="fas fa-microchip mr-2"></i>ESP32</span>
+                <span class="skill-tag px-4 py-2 bg-pink-50 dark:bg-pink-900/20 text-pink-700 dark:text-pink-300 rounded-full text-sm font-medium"><i class="fas fa-circuit-board mr-2"></i>PCB Design</span>
+                <span class="skill-tag px-4 py-2 bg-lime-50 dark:bg-lime-900/20 text-lime-700 dark:text-lime-300 rounded-full text-sm font-medium"><i class="fas fa-drafting-compass mr-2"></i>Altium</span>
+                <span class="skill-tag px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium"><i class="fas fa-drafting-compass mr-2"></i>Eagle</span>
+                <span class="skill-tag px-4 py-2 bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-300 rounded-full text-sm font-medium"><i class="fas fa-cube mr-2"></i>SolidWorks</span>
+                <span class="skill-tag px-4 py-2 bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 rounded-full text-sm font-medium"><i class="fas fa-cube mr-2"></i>Autodesk Inventor</span>
+                <span class="skill-tag px-4 py-2 bg-sky-50 dark:bg-sky-900/20 text-sky-700 dark:text-sky-300 rounded-full text-sm font-medium"><i class="fas fa-chart-line mr-2"></i>Matlab</span>
+                <span class="skill-tag px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium"><i class="fas fa-server mr-2"></i>Django</span>
+                <span class="skill-tag px-4 py-2 bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-700 dark:text-fuchsia-300 rounded-full text-sm font-medium"><i class="fas fa-cogs mr-2"></i>PLC Programming</span>
+                <span class="skill-tag px-4 py-2 bg-stone-100 dark:bg-stone-900/20 text-stone-700 dark:text-stone-300 rounded-full text-sm font-medium"><i class="fas fa-bolt mr-2"></i>LTspice</span>
+                <span class="skill-tag px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"><i class="fab fa-js mr-2"></i>JavaScript</span>
+                <span class="skill-tag px-4 py-2 bg-gray-100 dark:bg-gray-700/30 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"><i class="fas fa-robot mr-2"></i>Nvidia Jetson</span>
+                <span class="skill-tag px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full text-sm font-medium"><i class="fas fa-brain mr-2"></i>Google Coral</span>
+            </div>
 
-<h3><b>Certifications</b></h3>
-<ul class="alt">
-	<li>Microsoft Azure – <strong> <a href="https://learn.microsoft.com/en-au/users/ashya-1557/transcript/vy01et9ngwerewl">Microsoft Certified: Azure AI Fundamentals </a></strong></li>
-	<li>Microsoft Azure – <strong> <a href="https://learn.microsoft.com/en-au/users/ashya-1557/transcript/vy01et9ngwerewl">Microsoft Certified: Azure Data Fundamentals </a></strong></li>
-	<li>Nordic Semiconductors – <strong> <a href="https://academy.nordicsemi.com/check-certificate/7019A8676BBB770-7019A8670F327FF-7019A866B2C2187/">Nordic Dev Certified: Nordic IoT Fundamentals </a></strong></li>
-	<li>Nordic Semiconductors – <strong> <a href="https://academy.nordicsemi.com/check-certificate/7019A8676BB931B-7019A866B3AED68-7019A866B2C2187/">Nordic Dev Certified: Nordic Connect SDK Fundamentals </a></strong></li>
+            <!-- Certifications -->
+            <div class="text-center mb-8" data-aos="fade-up">
+                <h3 class="text-xl font-semibold mb-6">Certifications</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://learn.microsoft.com/en-au/users/ashya-1557/transcript/vy01et9ngwerewl" class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fab fa-microsoft text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Microsoft Certified</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">Azure AI Fundamentals</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-gray-400 ml-auto text-xs"></i>
+                </a>
+                <a href="https://learn.microsoft.com/en-au/users/ashya-1557/transcript/vy01et9ngwerewl" class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fab fa-microsoft text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Microsoft Certified</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">Azure Data Fundamentals</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-gray-400 ml-auto text-xs"></i>
+                </a>
+                <a href="https://academy.nordicsemi.com/check-certificate/7019A8676BBB770-7019A8670F327FF-7019A866B2C2187/" class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-signal text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Nordic Dev Certified</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">Nordic IoT Fundamentals</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-gray-400 ml-auto text-xs"></i>
+                </a>
+                <a href="https://academy.nordicsemi.com/check-certificate/7019A8676BB931B-7019A866B3AED68-7019A866B2C2187/" class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-signal text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Nordic Dev Certified</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">Nordic Connect SDK Fundamentals</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-gray-400 ml-auto text-xs"></i>
+                </a>
+                <div class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-hard-hat text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Engineers Australia Membership</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">WA White Card &middot; First Aid WA</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center flex-shrink-0">
+                        <i class="fab fa-microsoft text-orange-600 dark:text-orange-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">Azure AZ-400</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs">DevOps Solutions &middot; In Progress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</ul>
+    <!-- Work Experience Section -->
+    <section id="experience" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Career</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">Work Experience</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-xl mx-auto">From production management to ADAS engineering &mdash; a journey through IoT, embedded systems, and automotive technology.</p>
+            </div>
 
+            <!-- Timeline -->
+            <div class="space-y-12">
 
-									</div>
-									<span class="image"><img src="images/pic01.jpg" alt="" /></span>
-								</div>
-							</section>
+                <!-- Raptortech -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-lg font-bold">Senior ADAS Engineer</h3>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">Current</span>
+                        </div>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">Raptortech &middot; Full time</p>
+                        <p class="text-gray-400 text-xs mb-4">May 2025 &mdash; Present</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Develop and integrate machine vision camera systems for advanced driver-assistance systems (ADAS)</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Implement sensor fusion algorithms combining camera, radar and LiDAR data for robust perception</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Calibrate and validate ADAS sensor suites for automotive safety compliance</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Machine Vision</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Sensor Fusion</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">C++</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">OpenCV</span>
+                        </div>
+                    </div>
+                </div>
 
-						<!-- First Section -->
-							<section id="first" class="main special">
-								<header class="major">
-									<h2>Education Background</h2>
-								</header>
-								<ul class="features">
+                <!-- Switch -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-bold mb-1">Senior Systems Engineer</h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">Switch &middot; Contract</p>
+                        <p class="text-gray-400 text-xs mb-4">July 2024 &mdash; May 2025</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Design and develop custom Control System Controller for Microgrid using Python with Modbus</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Design backend system for EV charging system based on OCPP protocol</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Programming various equipment in microgrid such as PV inverters, genset and BESS</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Project Management</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Altium</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Odroid</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">PLC Programming</span>
+                        </div>
+                    </div>
+                </div>
 
-									<li>
-										<h3><b>Masters of Electrical Engineering</b></h3>
-										<h4><b><em>Curtin University, Perth</em></b></h4>
-										<p>In depth study of <b>Power Systems, Network Analysis, Data management and Object-oriented programming</b>
-											<em>Thesis/Project: Electric Car Simulation under Dynamic Battery temperature.</em>
-										</p>
-									</li>
-									<li>
+                <!-- Sandvik -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-bold mb-1">Senior R&D Digital Engineer</h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">Sandvik &middot; Full time</p>
+                        <p class="text-gray-400 text-xs mb-4">Nov 2022 &mdash; June 2024</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Execute and implement the digital and systems product development as defined by the Global Product Managers</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Development of Azure cloud instance</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Programming PLC and designing complex programs to meet the client requirements</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Project Management</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">C++</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Altium</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">STM32</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">PLC Programming</span>
+                        </div>
+                    </div>
+                </div>
 
-										<h3><b>Bachelor of Engineering - Mechatronics</b></h3>
-										<h4><b><em>Pune University, Pune</em></b></h4>
-										<p>Engineering study focused on the integration of mechanical, electronic and electrical engineering systems.
-											<em>Thesis/Project: Shaped magnetic field in resonance.</em></p>
-									</li>
+                <!-- CoreScan -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-bold mb-1">Mechatronic & Embedded Engineer</h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">CoreScan &middot; Full time</p>
+                        <p class="text-gray-400 text-xs mb-4">April 2022 &mdash; Nov 2022</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Create PCBs and write C, C++ code for firmware development</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Subsystems development and working on solutions to specific problems as well as entire systems</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Solving electronic, mechanical, and technical challenges requiring complex solutions</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">SolidWorks</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">C++</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Altium</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">STM32</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Data Dashboarding</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Spectur - Engineer -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-bold mb-1">Mechanical & Electronics Engineer</h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">Spectur &middot; Perth</p>
+                        <p class="text-gray-400 text-xs mb-4">June 2017 &mdash; March 2022</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Develop power electronics circuit models for highly efficient remote IoT solar devices across Australia and NZ</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Build automation systems using Python and Matlab for scalable production, testing and sales routines</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Design mechanical parts per client specs, present proof of concepts with simulations</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Autodesk Inventor</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">AutoCAD</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Altium</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Data Analytics</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Spectur - Production Manager -->
+                <div class="relative pl-12" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover">
+                        <h3 class="text-lg font-bold mb-1">Production Manager</h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">Spectur &middot; Perth</p>
+                        <p class="text-gray-400 text-xs mb-4">Dec 2015 &mdash; Sept 2017</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Set production plans and schedules for solar IoT devices</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Explaining and drawing circuit diagrams for production team</li>
+                            <li class="flex gap-2"><i class="fas fa-chevron-right text-blue-500 mt-1 text-xs"></i>Ordering electronics and mechanical parts as per plan set by sales team</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Autodesk Inventor</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Soldering</span>
+                            <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs text-gray-600 dark:text-gray-400">Power Electronics</span>
+                        </div>
+                    </div>
+                </div>
 
-								</ul>
+            </div>
+        </div>
+    </section>
 
-							</section>
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6 bg-white dark:bg-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Education</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">Academic Background</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 dark:bg-slate-700 rounded-xl p-8 card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-blue-600 dark:text-blue-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Masters of Electrical Engineering</h3>
+                    <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3">Curtin University, Perth</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                        In depth study of Power Systems, Network Analysis, Data Management and Object-Oriented Programming.
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500 italic">
+                        Thesis: Electric Car Simulation under Dynamic Battery Temperature
+                    </p>
+                </div>
+                <div class="bg-gray-50 dark:bg-slate-700 rounded-xl p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-purple-600 dark:text-purple-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Bachelor of Engineering - Mechatronics</h3>
+                    <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3">Pune University, Pune</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                        Engineering study focused on the integration of mechanical, electronic and electrical engineering systems.
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-500 italic">
+                        Thesis: Shaped Magnetic Field in Resonance
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-						<!-- Second Section -->
-							<section id="second" class="main special">
-								<header class="major">
-									<h2>Work Experience</h2>
-									<p>Worked in IoT company undertaking various task from coding, designing mechanical parts, designing PCBs and managing production<br /></p>
-								</header>
-								<ul class="statistics">
-									<li class="style1">
-										<span class="icon solid fa-code-branch"></span>
-										<strong>4</strong> years in Agile/Scrum
-									</li>
-									<li class="style2">
-										<span class="icon solid fa-terminal"></span>
-										<strong>3</strong> years of Python and C++
-									</li>
-									<li class="style3">
-										<span class="icon solid fa-camera-retro"></span>
-										<strong>4</strong> years of product development
-									</li>
-									<li class="style4">
-										<span class="icon solid fa-laptop"></span>
-										<strong>5</strong> year of PCB designing
-									</li>
-									<li class="style5">
-										<span class="icon solid fa-database"></span>
-										<strong>2</strong> year of managing database
-									</li>
-									
-								</ul>
-								<!--
-								<h3><b><u>Control and Software Engineer</u></b></h3>
-								<h4><b><em>AMLabs · Full Time</em></b></h4>
-								<h5><em>May 2025  to  now</em></h5>
-								<li>Design and develop LIDAr system to do volumetric scanning using Python with Modbus</li>
-									<li>Design backend system for EV charging system based on OCPP protocol</li>
-									<li>Design Electronics systems for LIDAR system</li>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Portfolio</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-serif">Personal Projects</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-video text-indigo-600 dark:text-indigo-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Video Chat App</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        Built with Django (Python) using Agora SDK. Features include join/leave channel, mute/unmute audio, and enable/disable video.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/AshyBoy91/Video_Chat_App" class="px-4 py-2 bg-gray-900 dark:bg-white dark:text-gray-900 text-white rounded-lg text-sm font-medium hover:opacity-80 transition-opacity">
+                            <i class="fab fa-github mr-2"></i>Code
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
+                        <i class="fas fa-spider text-green-600 dark:text-green-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Coles vs Woolworths Price Tracker</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        Selenium automated Python script collecting pricing data into Google Sheets API for data processing and comparison.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/AshyBoy91/ColesVsWooles_Web_Scraping" class="px-4 py-2 bg-gray-900 dark:bg-white dark:text-gray-900 text-white rounded-lg text-sm font-medium hover:opacity-80 transition-opacity">
+                            <i class="fab fa-github mr-2"></i>Code
+                        </a>
+                        <a href="git1.html" class="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg text-sm font-medium hover:border-blue-600 dark:hover:border-blue-400 transition-colors">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-								<pre><code><ul><b>Skill Acquired/Used<br>
-Project Management | C++ | Autodesk Eagle/Altium | Linux | PLC Programming</ul></b></code></pre>
-									-->
-								<h3><b><u>Senior ADAS Engineer</u></b></h3>
-								<h4><b><em>Raptortech · Full time</em></b></h4>
-								<h5><em>May 2025  to  now</em></h5>
-								<li>Develop and integrate machine vision camera systems for advanced driver-assistance systems (ADAS)</li>
-									<li>Implement sensor fusion algorithms combining camera, radar and LiDAR data for robust perception</li>
-									<li>Calibrate and validate ADAS sensor suites for automotive safety compliance</li>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-white dark:bg-slate-800">
+        <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+            <p class="text-blue-600 dark:text-blue-400 font-medium mb-2 tracking-wide uppercase text-sm">Get in Touch</p>
+            <h2 class="text-3xl md:text-4xl font-bold font-serif mb-6">Let's Connect</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-10">
+                Interested in working together? Feel free to reach out via email or connect with me on LinkedIn.
+            </p>
+            <div class="grid sm:grid-cols-3 gap-6 mb-10">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <p class="text-sm font-medium">Location</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Canning Vale, WA</p>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                        <i class="fas fa-envelope text-red-600 dark:text-red-400"></i>
+                    </div>
+                    <p class="text-sm font-medium">Email</p>
+                    <a href="mailto:ashwork9191@gmail.com" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">ashwork9191@gmail.com</a>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                        <i class="fas fa-phone text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <p class="text-sm font-medium">Phone</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Email for contact number</p>
+                </div>
+            </div>
+            <div class="flex gap-6 justify-center">
+                <a href="https://au.linkedin.com/in/ashish-andhari-2a48bb35" class="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-2xl transition-colors" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/AshyBoy91" class="text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl transition-colors" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:ashwork9191@gmail.com" class="text-gray-400 hover:text-red-500 text-2xl transition-colors" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-								<pre><code><ul><b>Skill Acquired/Used<br>
-Machine Vision | Sensor Fusion | Python | C++ | OpenCV | ADAS Development</ul></b></code></pre>
-								<h3><b><u>Senior Systems Engineer</u></b></h3>
-								<h4><b><em>Switch · Contract</em></b></h4>
-								<h5><em>July 2024  to  May 2025</em></h5>
-								<li>Design and develop custom Control System Controller for Microgrid using Python with Modbus</li>
-									<li>Design backend system for EV charging system based on OCPP protocol</li>
-									<li>Programming various equipment in microgrid such as PV inverters, genset and BESS</li>
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-gray-200 dark:border-slate-700">
+        <p class="text-center text-sm text-gray-400">&copy; 2025 Ashish Andhari. All rights reserved.</p>
+    </footer>
 
-								<pre><code><ul><b>Skill Acquired/Used<br>
-Project Management | Python | Autodesk Eagle/Altium | Odroid | PLC Programming</ul></b></code></pre>
-								<h3><b><u>Senior R&D Digital Engineer</u></b></h3>
-								<h4><b><em>Sandvik · Full time</em></b></h4>
-								<h5><em>Nov 2022  to  June 2024</em></h5>
-								<li>Execute and implement the digital and systems product development
-as defined by the Global Product Managers</li>
-									<li>Development of Azure cloud instance</li>
-									<li>Programming PLC and designing complex programs to meet the client requirements</li>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 700,
+            once: true,
+            offset: 50
+        });
 
-								<pre><code><ul><b>Skill Acquired/Used<br>
-Project Management | C++ | Autodesk Eagle/Altium | SMT32 Microcontroller | PLC Programming</ul></b></code></pre>
-								<h3><b><u>Mechatronic & Embedded Engineer</u></b></h3>
-								<h4><b><em>CoreScan · Full time</em></b></h4>
-								<h5><em>April 2022  to  Nov 2022</em></h5>
-								<li>Create PCBs and Write C, C++ code for firmware development</li>
-									<li>Designing projects will include subsystems development and working on
-solutions to specific problems as well as working on entire systems.</li>
-									<li>Solving electronic, mechanical, administrative or any other field that
-requires a technical or complex solution.</li>
+        // Dark mode toggle
+        const toggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
 
-								<pre><code><ul><b>Skill Acquired/Used<br>
-SolidWorks | C++ | Autodesk Eagle/Altium | SMT32 Microcontroller | Data Dashboarding</ul></b></code></pre>
+        // Check saved preference or system preference
+        if (localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
 
+        toggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
 
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-
-										<h3><b><u>Mechanical & Electronics Engineer</u></b></h3>
-										<h4><b><em>Spectur (Perth Branch)</em></b></h4>
-										<h5><em>June 2017 to March 2022</em></h5>
-
-										<li>Develop power electronics circuit models for highly efficient remote IOT
-										solar devices required to work across Australia and NZ</li>
-										<li>Build automation systems using Python and Matlab to
-										offer easy scalability in production, testing and sales
-										routines</li>
-										<li>Design mechanical parts as per specs given by clients,
-										present proof of concepts with simulations</li>
-										<pre><code><ul><b>Skill Acquired/Used<br>
-Autodesk Inventor | AutoCAD Electrical and ETAP | git | Python | Altium PCB Design | Production Documentation | Data Analytics</ul></b></code></pre>
-</li>
-
-
-										<h3><b><u>Production Manager</u></b></h3>
-										<h4><b><em>Spectur (Perth Branch)</em></b></h4>
-										<h5><em>Dec 2015 to Sept 2017</em></h5>
-
-										<li>Set production plans/schedules for solar IoT devices</li>
-										<li>Explaining and drawing circuit diagrams for production team</li>
-										<li>Ordering electronics and mechanical parts as per plan
-											set by sales team</li>
-										<pre><code><ul><b>Skill Acquired/Used<br>
-Autodesk Inventor | Soldering | Documentation for ordering abroad | Power electronics tests and Simulation</ul></b></code></pre>
-										</li>
-
-							</section>
-
-						<!-- Get Started -->
-							<section id="cta" class="main special">
-								<header class="major">
-									<h2>Personal Projects</h2>
-									<p><b>Video Chat App</b> is made made with Django - Python using Agora SDK. Live project deployed on Heroku with link below.
-										You can - Join/leave channel, Mute/unmute audio, Enable/disable video</p>
-								</header>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="https://github.com/AshyBoy91/Video_Chat_App" class="button primary">Github Link</a></li>
-										<li><a href="https://videochatapp91.herokuapp.com/" class="button">Visit</a></li>
-									</ul>
-									<br>
-									<header class="major">
-										<p><b>Collecting data</b> from Coles and Woolworths for a specific item.
-										Using <b> Selenium automated python script </b> gather data into google
-									sheet API as a simple accessible database for more data processing.</p>
-									</header>
-									<footer class="major">
-										<ul class="actions special">
-											<li><a href="https://github.com/AshyBoy91/ColesVsWooles_Web_Scraping" class="button primary">Github Link</a></li>
-											<li><a href="git1.html" class="button">Learn More</a></li>
-										</ul>
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<h2>Certifications</h2>
-							<p>Azure AZ-400 Designing and Implementing Microsoft DevOps Solutions (currently undertaking)<br>
-								Engineers Australia Membership<br>
-								WA White Card<br>
-								First - Aid WA
-							</p>
-
-						</section>
-						<section>
-							<h2>Ashish Andhari</h2>
-							<dl class="alt">
-								<dt>Address</dt>
-								<dd>Canning Vale WA</dd>
-								<dt>Phone</dt>
-								<dd>Please email for contact number</dd>
-								<dt>Email</dt>
-								<dd><a href="mailto:ashwork9191@gmail.com">ashwork9191@gmail.com</a></dd>
-							</dl>
-
-						</section>
-						<p class="copyright">&copy; Ashish A </p>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
 </html>
